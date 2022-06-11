@@ -63,7 +63,7 @@ const AppPicker = ({
             renderItem={({ item }) => (
               <PickerItem
                 label={item.label}
-                onPress={() => onSelectItem(item) && setShowModal(false)}
+                onPress={() => onSelectItem(item.label) && setShowModal(false)}
               />
             )}
           />
