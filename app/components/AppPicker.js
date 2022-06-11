@@ -18,13 +18,16 @@ import PickerItem from "./PickerItem";
 const AppPicker = ({
   icon,
   items,
+  numOfColumns = 3,
   placeholder,
   onSelectItem,
   selectedItem,
+  PickerItemComponent = PickerItem,
   width = "100%",
-  ...otherProps
 }) => {
   const [showModal, setShowModal] = React.useState(false);
+
+  console.log("NUM", numOfColumns);
 
   return (
     <>
@@ -61,8 +64,10 @@ const AppPicker = ({
           <FlatList
             data={items}
             keyExtractor={(item) => item.value.toString()}
+            numColumns={numOfColumns}
             renderItem={({ item }) => (
-              <PickerItem
+              <PickerItemComponent
+                item={item}
                 label={item.label}
                 onPress={() => onSelectItem(item.label) && setShowModal(false)}
               />
