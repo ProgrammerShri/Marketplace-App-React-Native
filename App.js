@@ -2,15 +2,12 @@ import { StyleSheet, View } from "react-native";
 import Icon from "./app/components/Icon";
 import ListItem from "./app/components/ListItem";
 import Screen from "./app/components/Screen";
+import AccountScreen from "./app/screens/AccountScreen";
 import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
 import MessagesScreen from "./app/screens/MessagesScreen";
 
 export default function App() {
-  return (
-    <Screen>
-      <ListItem title="Listing Details" ImageComponent={<Icon name="home" />} />
-    </Screen>
-  );
+  return <AccountScreen />;
 }
 
 const styles = StyleSheet.create({
