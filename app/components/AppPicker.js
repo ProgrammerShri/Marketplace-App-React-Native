@@ -27,8 +27,6 @@ const AppPicker = ({
 }) => {
   const [showModal, setShowModal] = React.useState(false);
 
-  console.log("NUM", numOfColumns);
-
   return (
     <>
       <TouchableWithoutFeedback
