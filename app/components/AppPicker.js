@@ -21,6 +21,7 @@ const AppPicker = ({
   placeholder,
   onSelectItem,
   selectedItem,
+  width = "100%",
   ...otherProps
 }) => {
   const [showModal, setShowModal] = React.useState(false);
@@ -32,7 +33,7 @@ const AppPicker = ({
           setShowModal(true);
         }}
       >
-        <View style={styles.container}>
+        <View style={[styles.container, { width }]}>
           {icon && (
             <MaterialCommunityIcons
               name={icon}
