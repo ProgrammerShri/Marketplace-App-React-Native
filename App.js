@@ -1,19 +1,27 @@
 import { useState } from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
-import AppTextInput from "./app/components/AppTextInput";
-import Icon from "./app/components/Icon";
-import ListItem from "./app/components/ListItem";
+import { StyleSheet, Switch, Text, TextInput, View } from "react-native";
+import AppPicker from "./app/components/AppPicker";
 import Screen from "./app/components/Screen";
-import AccountScreen from "./app/screens/AccountScreen";
-import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
-import ListingsScreen from "./app/screens/ListingsScreen";
-import MessagesScreen from "./app/screens/MessagesScreen";
+
+const categories = [
+  { label: "Clothing", value: 1 },
+  { label: "Electronics", value: 2 },
+  { label: "Furniture", value: 3 },
+  { label: "Books", value: 4 },
+  { label: "Other", value: 5 },
+];
 
 export default function App() {
-  const [firstName, setFirstName] = useState("");
+  const [category, setCategory] = useState(categories[0]);
   return (
     <Screen>
-      <AppTextInput icon="account-circle" placeholder="First Name" />
+      <AppPicker
+        icon="apps"
+        placeholder="Category"
+        items={categories}
+        onSelectItem={(item) => setCategory(item)}
+        selectedItem={category}
+      />
     </Screen>
   );
 }
