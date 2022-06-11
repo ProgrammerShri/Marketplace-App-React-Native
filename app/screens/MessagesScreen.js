@@ -30,10 +30,12 @@ const MessagesScreen = () => {
     setMessages(newMessages);
   };
 
+  console.log(messages);
+
   return (
     <Screen>
       <FlatList
-        data={messagesData}
+        data={messages}
         keyExtractor={(message) => message.id.toString()}
         renderItem={({ item }) => (
           <ListItem
@@ -49,7 +51,7 @@ const MessagesScreen = () => {
         ItemSeparatorComponent={ListItemSeperator}
         refreshing={refreshing}
         onRefresh={() => {
-          console.log("Refreshing");
+          setMessages(messagesData);
         }}
       />
     </Screen>
