@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Screen from "../components/Screen";
 import {
   AppForm,
@@ -7,10 +7,10 @@ import {
   SubmitButton,
 } from "../components/forms";
 import * as Yup from "yup";
-import * as Location from "expo-location";
 import { StyleSheet } from "react-native";
 import CategoryPickerItem from "../components/CategoryPickerItem";
 import AppFormImagePicker from "../components/forms/AppFormImagePicker";
+import useLocation from "../components/useLocation";
 
 const validationSchema = Yup.object()
   .shape({
@@ -52,24 +52,8 @@ const categories = [
 ];
 
 const ListingEditScreen = () => {
-  const [location, setLocation] = useState();
-  useEffect(() => {
-    getLocationAsync();
-  }, []);
+  const location = useLocation();
 
-  const getLocationAsync = async () => {
-    const { status } = await Location.requestForegroundPermissionsAsync();
-    if (status !== "granted") {
-      console.log("Permission to access location was denied");
-    }
-
-    const {
-      coords: { latitude, longitude },
-    } = await Location.getLastKnownPositionAsync();
-    setLocation({ latitude, longitude });
-  };
-
-  console.log(location);
   return (
     <Screen style={styles.container}>
       <AppForm
