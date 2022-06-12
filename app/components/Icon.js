@@ -15,7 +15,7 @@ const Icon = ({
         width: size,
         height: size,
         backgroundColor,
-        borderRadius: size / 2,
+        borderRadius: 50,
         justifyContent: "center",
         alignItems: "center",
       }}

@@ -45,12 +45,6 @@ const categories = [
     backgroundColor: "orange",
     icon: "camera-iris",
   },
-  {
-    label: "Car",
-    value: 6,
-    backgroundColor: "darkpink",
-    icon: "car-sports",
-  },
   { label: "Other", value: 6, backgroundColor: "grey", icon: "crown" },
 ];
 
