@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import { Image, StyleSheet } from "react-native";
 import Screen from "../components/Screen";
 import { AppForm, AppFormField, SubmitButton } from "../components/forms";
+import routes from "../navigation/routes";
 
 const validationSchema = Yup.object()
   .shape({
@@ -49,7 +50,7 @@ const RegisterScreen = () => {
           name="password"
         />
 
-        <SubmitButton title="Register" color="secondary" />
+        <SubmitButton title={routes.REGISTER} color="secondary" />
       </AppForm>
     </Screen>
   );

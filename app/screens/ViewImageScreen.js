@@ -17,7 +17,7 @@ const ViewImageScreen = () => {
         resizeMode="contain"
         source={require("../assets/chair.jpg")}
         style={styles.image}
-      ></Image>
+      />
     </View>
   );
 };
