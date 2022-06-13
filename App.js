@@ -1,12 +1,13 @@
-import { StyleSheet } from "react-native";
+import { Button, StyleSheet, Text } from "react-native";
 import Screen from "./app/components/Screen";
-import ListingEditScreen from "./app/screens/ListingEditScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import AuthNavigator from "./app/navigation/AuthNavigator";
 
 export default function App() {
   return (
-    <Screen>
-      <ListingEditScreen />
-    </Screen>
+    <NavigationContainer>
+      <AuthNavigator />
+    </NavigationContainer>
   );
 }
 
