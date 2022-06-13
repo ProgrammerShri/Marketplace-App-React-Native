@@ -91,6 +91,7 @@ const ListingEditScreen = () => {
       ...listing,
       location,
     });
+
     if (!result.ok) {
       return alert("Could not save listing");
     }
