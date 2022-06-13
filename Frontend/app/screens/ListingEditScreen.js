@@ -11,71 +11,72 @@ import { StyleSheet } from "react-native";
 import CategoryPickerItem from "../components/CategoryPickerItem";
 import AppFormImagePicker from "../components/forms/AppFormImagePicker";
 import useLocation from "../hooks/useLocation";
+import listingsApi from "../api/listings";
 
 const validationSchema = Yup.object()
   .shape({
     title: Yup.string().required().min(1).label("Title"),
     price: Yup.number().required().min(1).max(10000).label("Price"),
     description: Yup.string().label("Description"),
-    category: Yup.string().required().nullable().min(1).label("Category"),
+    category: Yup.object().required().nullable().label("Category"),
     images: Yup.array().min(1, "Please select at least one image"),
   })
   .required();
 
 const categories = [
-  { id: 1, label: "Furniture", value: 1, backgroundColor: "red", icon: "apps" },
+  { id: 1, name: "Furniture", value: 1, backgroundColor: "red", icon: "apps" },
   {
     id: 2,
-    label: "Electronics",
+    name: "Electronics",
     value: 2,
     backgroundColor: "green",
     icon: "cellphone-settings",
   },
   {
     id: 3,
-    label: "Books",
+    name: "Books",
     value: 3,
     backgroundColor: "blue",
     icon: "book-open-page-variant",
   },
   {
     id: 4,
-    label: "Clothing",
+    name: "Clothing",
     value: 4,
     backgroundColor: "purple",
     icon: "tshirt-crew-outline",
   },
   {
     id: 5,
-    label: "Camera",
+    name: "Camera",
     value: 5,
     backgroundColor: "orange",
     icon: "camera-iris",
   },
   {
     id: 6,
-    label: "Games",
+    name: "Games",
     value: 6,
     backgroundColor: "pink",
     icon: "gamepad",
   },
   {
     id: 7,
-    label: "Tools",
+    name: "Tools",
     value: 7,
     backgroundColor: "brown",
     icon: "toolbox",
   },
   {
     id: 8,
-    label: "Books",
+    name: "Books",
     value: 8,
     backgroundColor: "blue",
     icon: "book-open-page-variant",
   },
   {
     id: 9,
-    label: "Doc",
+    name: "Doc",
     value: 9,
     backgroundColor: "gray",
     icon: "file-document-outline",
@@ -85,6 +86,16 @@ const categories = [
 const ListingEditScreen = () => {
   const location = useLocation();
 
+  const handleSubmit = async (listing) => {
+    const result = await listingsApi.addListing({
+      ...listing,
+      location,
+    });
+    if (!result.ok) {
+      return alert("Could not save listing");
+    }
+    alert("Listing Saved Successfully");
+  };
   return (
     <Screen style={styles.container}>
       <AppForm
@@ -96,9 +107,7 @@ const ListingEditScreen = () => {
           images: [],
         }}
         validationSchema={validationSchema}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
+        onSubmit={handleSubmit}
       >
         <AppFormImagePicker name="images" />
         <AppFormField

@@ -11,6 +11,7 @@ const ActivityIndicator = ({ visible = false }) => {
       loop
     />
   );
+  c;
 };
 
 export default ActivityIndicator;

@@ -8,26 +8,19 @@ import listingApi from "../api/listings";
 import AppText from "../components/AppText";
 import AppButton from "../components/AppButton";
 import ActivityIndicator from "../components/ActivityIndicator";
+import useApi from "../hooks/useApi";
 
 const ListingsScreen = ({ navigation }) => {
-  const [listings, setListings] = React.useState([]);
-  const [error, setError] = React.useState(false);
-  const [isLoading, setIsLoading] = React.useState(true);
+  const {
+    data: listings,
+    isLoading,
+    error,
+    request: loadlistings,
+  } = useApi(listingApi.getListings);
 
   useEffect(() => {
-    loadListings();
+    loadlistings();
   }, []);
-
-  const loadListings = async () => {
-    setIsLoading(true);
-    const response = await listingApi.getListings();
-    setIsLoading(false);
-
-    if (!response.ok) return setError(true);
-
-    setError(false);
-    setListings(response.data);
-  };
 
   return (
     <Screen style={styles.screen}>
@@ -43,11 +36,11 @@ const ListingsScreen = ({ navigation }) => {
             >
               Something went Wrong
             </AppText>
-            <AppButton title="Retry" onPress={loadListings} color="primary" />
+            <AppButton title="Retry" onPress={loadlistings} color="primary" />
           </View>
         </>
       )}
-      <ActivityIndicator />
+      <ActivityIndicator visible={isLoading} />
       <FlatList
         data={listings}
         keyExtractor={(listing) => listing.id.toString()}

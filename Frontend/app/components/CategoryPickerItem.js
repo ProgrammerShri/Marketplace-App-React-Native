@@ -14,7 +14,7 @@ const CategoryPickerItem = ({ item, onPress }) => {
           size={80}
         />
         <AppText style={styles.text} numberOfLines={1}>
-          {item.label}
+          {item.name}
         </AppText>
       </View>
     </TouchableOpacity>

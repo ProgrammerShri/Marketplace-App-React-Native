@@ -44,7 +44,7 @@ const AppPicker = ({
             />
           )}
           {selectedItem ? (
-            <AppText style={styles.text}>{selectedItem}</AppText>
+            <AppText style={styles.text}>{selectedItem.name}</AppText>
           ) : (
             <AppText style={styles.placeholder}>{placeholder}</AppText>
           )}
@@ -61,13 +61,13 @@ const AppPicker = ({
           <Button title="Close" onPress={() => setShowModal(false)} />
           <FlatList
             data={items}
-            keyExtractor={(item) => item.value.toString()}
+            keyExtractor={(item) => item.id.toString()}
             numColumns={numOfColumns}
             renderItem={({ item }) => (
               <PickerItemComponent
                 item={item}
-                label={item.label}
-                onPress={() => onSelectItem(item.label) && setShowModal(false)}
+                label={item.name}
+                onPress={() => onSelectItem(item) && setShowModal(false)}
               />
             )}
           />
