@@ -8,6 +8,7 @@ import colors from "../config/colors";
 
 const menuItems = [
   {
+    id: 1,
     title: "My Listings",
     icon: {
       name: "format-list-bulleted",
@@ -15,6 +16,7 @@ const menuItems = [
     },
   },
   {
+    id: 2,
     title: "My Messages",
     icon: {
       name: "email",
@@ -36,7 +38,7 @@ const AccountScreen = () => {
       <View style={styles.container}>
         <FlatList
           data={menuItems}
-          keyExtractor={(menuItem) => menuItem.title}
+          keyExtractor={(menuItem) => menuItem.id.toString()}
           ItemSeparatorComponent={ListItemSeperator}
           renderItem={({ item }) => (
             <ListItem

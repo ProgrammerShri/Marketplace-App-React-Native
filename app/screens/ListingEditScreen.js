@@ -10,7 +10,7 @@ import * as Yup from "yup";
 import { StyleSheet } from "react-native";
 import CategoryPickerItem from "../components/CategoryPickerItem";
 import AppFormImagePicker from "../components/forms/AppFormImagePicker";
-import useLocation from "../components/useLocation";
+import useLocation from "../hooks/useLocation";
 
 const validationSchema = Yup.object()
   .shape({
@@ -23,32 +23,63 @@ const validationSchema = Yup.object()
   .required();
 
 const categories = [
-  { label: "Furniture", value: 1, backgroundColor: "red", icon: "apps" },
+  { id: 1, label: "Furniture", value: 1, backgroundColor: "red", icon: "apps" },
   {
+    id: 2,
     label: "Electronics",
     value: 2,
     backgroundColor: "green",
     icon: "cellphone-settings",
   },
   {
+    id: 3,
     label: "Books",
     value: 3,
     backgroundColor: "blue",
     icon: "book-open-page-variant",
   },
   {
+    id: 4,
     label: "Clothing",
     value: 4,
     backgroundColor: "purple",
     icon: "tshirt-crew-outline",
   },
   {
+    id: 5,
     label: "Camera",
     value: 5,
     backgroundColor: "orange",
     icon: "camera-iris",
   },
-  { label: "Other", value: 6, backgroundColor: "grey", icon: "crown" },
+  {
+    id: 6,
+    label: "Games",
+    value: 6,
+    backgroundColor: "pink",
+    icon: "gamepad",
+  },
+  {
+    id: 7,
+    label: "Tools",
+    value: 7,
+    backgroundColor: "brown",
+    icon: "toolbox",
+  },
+  {
+    id: 8,
+    label: "Books",
+    value: 8,
+    backgroundColor: "blue",
+    icon: "book-open-page-variant",
+  },
+  {
+    id: 9,
+    label: "Doc",
+    value: 9,
+    backgroundColor: "gray",
+    icon: "file-document-outline",
+  },
 ];
 
 const ListingEditScreen = () => {

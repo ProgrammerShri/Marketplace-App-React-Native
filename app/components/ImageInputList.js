@@ -16,7 +16,7 @@ const ImageInputList = ({ imageUris = [], onRemoveImage, onAddImage }) => {
         <View style={styles.container}>
           {imageUris.map((imageUri, index) => {
             return (
-              <View key={imageUri}>
+              <View key={index}>
                 <ImageInput
                   imageUri={imageUri}
                   onChangeImage={() => onRemoveImage(imageUri)}
