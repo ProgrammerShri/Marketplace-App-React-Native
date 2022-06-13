@@ -1,7 +1,7 @@
 import { create } from "apisauce";
 
 const apiClient = create({
-  baseURL: "http://localhost:9000/api",
+  baseURL: "https://node-marketplace-app.herokuapp.com/api/",
 });
 
 export default apiClient;
