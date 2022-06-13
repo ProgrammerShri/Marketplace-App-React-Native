@@ -7,18 +7,24 @@ import routes from "../navigation/routes";
 import listingApi from "../api/listings";
 import AppText from "../components/AppText";
 import AppButton from "../components/AppButton";
+import ActivityIndicator from "../components/ActivityIndicator";
 
 const ListingsScreen = ({ navigation }) => {
   const [listings, setListings] = React.useState([]);
-  const [error, setError] = React.useState(true);
+  const [error, setError] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   useEffect(() => {
     loadListings();
   }, []);
 
   const loadListings = async () => {
+    setIsLoading(true);
     const response = await listingApi.getListings();
+    setIsLoading(false);
+
     if (!response.ok) return setError(true);
+
     setError(false);
     setListings(response.data);
   };
@@ -41,6 +47,7 @@ const ListingsScreen = ({ navigation }) => {
           </View>
         </>
       )}
+      <ActivityIndicator />
       <FlatList
         data={listings}
         keyExtractor={(listing) => listing.id.toString()}
