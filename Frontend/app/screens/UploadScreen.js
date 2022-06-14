@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   lottie: {
-    width: 150,
+    width: 200,
   },
 });
 
