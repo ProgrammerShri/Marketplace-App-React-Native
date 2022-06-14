@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Screen from "../components/Screen";
 import {
   AppForm,
@@ -12,6 +12,7 @@ import CategoryPickerItem from "../components/CategoryPickerItem";
 import AppFormImagePicker from "../components/forms/AppFormImagePicker";
 import useLocation from "../hooks/useLocation";
 import listingsApi from "../api/listings";
+import UploadScreen from "./UploadScreen";
 
 const validationSchema = Yup.object()
   .shape({
@@ -85,12 +86,20 @@ const categories = [
 
 const ListingEditScreen = () => {
   const location = useLocation();
+  const [uploadModalVisible, setUploadModalVisible] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const handleSubmit = async (listing) => {
-    const result = await listingsApi.addListing({
-      ...listing,
-      location,
-    });
+    setProgress(0);
+    setUploadModalVisible(true);
+    const result = await listingsApi.addListing(
+      {
+        ...listing,
+        location,
+      },
+      (progress) => setProgress(progress)
+    );
+    setUploadModalVisible(false);
 
     if (!result.ok) {
       return alert("Could not save listing");
@@ -99,6 +108,7 @@ const ListingEditScreen = () => {
   };
   return (
     <Screen style={styles.container}>
+      <UploadScreen visible={uploadModalVisible} progress={progress} />
       <AppForm
         initialValues={{
           title: "",
