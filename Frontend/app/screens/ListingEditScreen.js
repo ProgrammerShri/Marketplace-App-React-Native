@@ -99,16 +99,21 @@ const ListingEditScreen = () => {
       },
       (progress) => setProgress(progress)
     );
-    setUploadModalVisible(false);
 
     if (!result.ok) {
+      setUploadModalVisible(false);
       return alert("Could not save listing");
     }
-    alert("Listing Saved Successfully");
   };
   return (
     <Screen style={styles.container}>
-      <UploadScreen visible={uploadModalVisible} progress={progress} />
+      <UploadScreen
+        visible={uploadModalVisible}
+        progress={progress}
+        onDone={() => {
+          setUploadModalVisible(false);
+        }}
+      />
       <AppForm
         initialValues={{
           title: "",
