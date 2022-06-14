@@ -7,9 +7,15 @@ import ListItem from "../components/ListItem";
 const ListingDetailsScreen = ({ route }) => {
   const listing = route?.params;
 
+  const { images } = listing;
+  const image = images[0]?.url;
   return (
     <View>
-      <Image style={styles.image} source={listing?.image} />
+      <Image
+        style={styles.image}
+        // preview={{ uri: images[0]?.thumbnail }}
+        source={image && { uri: image }}
+      />
       <View style={styles.detailContainer}>
         <AppText style={styles.title}>{listing?.title}</AppText>
         <AppText style={styles.price}>${listing?.price}</AppText>

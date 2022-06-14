@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "react-native-expo-image-cache": "^4.1.0"
+  }
+}
