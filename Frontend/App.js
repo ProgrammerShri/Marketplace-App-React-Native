@@ -5,6 +5,7 @@ import AppNavigator from "./app/navigation/AppNavigator";
 import AuthNavigator from "./app/navigation/AuthNavigator";
 import NetInfo from "@react-native-community/netinfo";
 import { LogBox } from "react-native";
+import OfflineNotice from "./app/components/OfflineNotice";
 
 export default function App() {
   LogBox.ignoreAllLogs();
@@ -17,9 +18,12 @@ export default function App() {
   };
   demo();
   return (
-    <NavigationContainer theme={navigationTheme}>
-      <AppNavigator />
-      {/* <AuthNavigator /> */}
-    </NavigationContainer>
+    <>
+      <OfflineNotice />
+      <NavigationContainer theme={navigationTheme}>
+        <AppNavigator />
+        {/* <AuthNavigator /> */}
+      </NavigationContainer>
+    </>
   );
 }
