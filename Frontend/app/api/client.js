@@ -1,9 +1,10 @@
 import { create } from "apisauce";
 import { getCache, storeCache } from "../utility/cache";
 import authStorage from "../auth/storage";
+import settings from "../config/settings";
 
 const apiClient = create({
-  baseURL: "https://node-marketplace-app.herokuapp.com/api/",
+  baseURL: settings.apiUrl,
 });
 
 apiClient.addAsyncRequestTransform(async (request) => {

@@ -35,7 +35,6 @@ const RegisterScreen = () => {
       if (result.data) setError(result.data.error);
       else {
         setError(response.data.message || "An unexpected error occured");
-        console.log(result);
       }
       return;
     }
@@ -48,7 +47,6 @@ const RegisterScreen = () => {
     auth.logIn(authToken);
   };
 
-  console.log();
   return (
     <>
       <ActivityIndicator

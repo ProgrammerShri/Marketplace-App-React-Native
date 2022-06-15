@@ -46,7 +46,6 @@ const ListingsScreen = ({ navigation }) => {
           data={listings}
           keyExtractor={(listing) => listing.id.toString()}
           renderItem={({ item }) => (
-            // console.log(item),
             <Card
               title={item.title}
               subTitle={`$${item.price}`}

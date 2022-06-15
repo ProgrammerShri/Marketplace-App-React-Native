@@ -30,8 +30,6 @@ const MessagesScreen = () => {
     setMessages(newMessages);
   };
 
-  console.log(messages);
-
   return (
     <Screen>
       <FlatList

@@ -14,7 +14,6 @@ const sendPushNotification = async (targetExpoPushToken, message) => {
   const sendChunks = async () => {
     chunks.forEach(async (chunk) => {
       await expo.sendPushNotificationsAsync(chunk);
-      console.log("Push notification sent", chunk);
     });
   };
 };

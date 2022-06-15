@@ -3,6 +3,7 @@ import * as Notifications from "expo-notifications";
 import * as Permissions from "expo-permissions";
 import expoPushTokens from "../api/expoPushTokens";
 import navigation from "../navigation/rootNavigation";
+import logger from "../utility/logger";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -28,9 +29,8 @@ export default useNotification = (notificationListner) => {
       if (!permission.granted) return;
       const token = await Notifications.getExpoPushTokenAsync();
       await expoPushTokens.register(token);
-      console.log(token);
     } catch (error) {
-      console.log("Error getting expo push token", error);
+      logger.log("Error getting expo push token", error);
     }
   };
 };
