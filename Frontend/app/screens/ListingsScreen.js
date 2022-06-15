@@ -9,7 +9,6 @@ import AppText from "../components/AppText";
 import AppButton from "../components/AppButton";
 // import ActivityIndicator from "../components/ActivityIndicator";
 import useApi from "../hooks/useApi";
-import { LogBox } from "react-native";
 
 const ListingsScreen = ({ navigation }) => {
   const {
@@ -22,12 +21,6 @@ const ListingsScreen = ({ navigation }) => {
   useEffect(() => {
     loadlistings();
   }, []);
-
-  LogBox.ignoreLogs(["exported from 'deprecated-react-native-prop-types'."]);
-  // LogBox.ignoreLogs([
-  //   "ViewPropTypes will be removed",
-  //   "ColorPropType will be removed",
-  // ]);
 
   return (
     <Screen style={styles.screen}>
