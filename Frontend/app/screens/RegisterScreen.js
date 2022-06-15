@@ -10,8 +10,10 @@ import {
 } from "../components/forms";
 import routes from "../navigation/routes";
 import authApi from "../../app/api/auth.js";
-import useAuth from "../auth/useAuth";
 import userApi from "../../app/api/user.js";
+import useAuth from "../auth/useAuth";
+import useApi from "../hooks/useApi";
+import ActivityIndicator from "../components/ActivityIndicator";
 
 const validationSchema = Yup.object()
   .shape({
@@ -24,9 +26,11 @@ const validationSchema = Yup.object()
 const RegisterScreen = () => {
   const [error, setError] = React.useState(null);
   const auth = useAuth();
+  const registerApi = useApi(userApi.register);
+  const loginApi = useApi(authApi.login);
 
   const handleSubmit = async (userInfo) => {
-    const result = await userApi.register(userInfo);
+    const result = await registerApi.request(userInfo);
     if (!result.ok) {
       if (result.data) setError(result.data.error);
       else {
@@ -36,7 +40,7 @@ const RegisterScreen = () => {
       return;
     }
 
-    const { data: authToken } = await authApi.login(
+    const { data: authToken } = await loginApi.request(
       userInfo.email,
       userInfo.password
     );
@@ -44,8 +48,12 @@ const RegisterScreen = () => {
     auth.logIn(authToken);
   };
 
+  console.log();
   return (
     <Screen style={styles.container}>
+      <ActivityIndicator
+        visible={registerApi.isLoading || loginApi.isLoading}
+      />
       <Image style={styles.logo} source={require("../assets/logo-red.png")} />
       <AppForm
         initialValues={{ name: "", email: "", password: "" }}
