@@ -3,11 +3,22 @@ import { NavigationContainer } from "@react-navigation/native";
 import navigationTheme from "./app/navigation/navigationTheme";
 import AppNavigator from "./app/navigation/AppNavigator";
 import AuthNavigator from "./app/navigation/AuthNavigator";
-import { LogBox } from "react-native";
+import { Button, LogBox } from "react-native";
 import OfflineNotice from "./app/components/OfflineNotice";
 import AuthContext from "./app/auth/context";
 import authStorage from "./app/auth/storage";
 import AppLoading from "expo-app-loading";
+import { navigationRef } from "./app/navigation/rootNavigation";
+import * as Notifications from "expo-notifications";
+import Screen from "./app/components/Screen";
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
 
 export default function App() {
   LogBox.ignoreAllLogs();
@@ -30,11 +41,13 @@ export default function App() {
   }
 
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
-      <OfflineNotice />
-      <NavigationContainer theme={navigationTheme}>
-        {user ? <AppNavigator /> : <AuthNavigator />}
-      </NavigationContainer>
-    </AuthContext.Provider>
+    <>
+      <AuthContext.Provider value={{ user, setUser }}>
+        <OfflineNotice />
+        <NavigationContainer ref={navigationRef} theme={navigationTheme}>
+          {user ? <AppNavigator /> : <AuthNavigator />}
+        </NavigationContainer>
+      </AuthContext.Provider>
+    </>
   );
 }
