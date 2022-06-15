@@ -23,39 +23,41 @@ const ListingsScreen = ({ navigation }) => {
   }, []);
 
   return (
-    <Screen style={styles.screen}>
-      {error && (
-        <>
-          <View style={styles.error}>
-            <AppText
-              style={{
-                textAlign: "center",
-                fontSize: 26,
-                marginVertical: 50,
-              }}
-            >
-              Something went Wrong
-            </AppText>
-            <AppButton title="Retry" onPress={loadlistings} color="primary" />
-          </View>
-        </>
-      )}
-      {/* <ActivityIndicator visible={isLoading} /> */}
-      <FlatList
-        data={listings}
-        keyExtractor={(listing) => listing.id.toString()}
-        renderItem={({ item }) => (
-          // console.log(item),
-          <Card
-            title={item.title}
-            subTitle={`$${item.price}`}
-            imageUrl={item.images[0]?.url}
-            thumbnailUrl={item.images[0]?.thumbnailUrl}
-            onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
-          />
+    <>
+      <ActivityIndicator visible={isLoading} />
+      <Screen style={styles.screen}>
+        {error && (
+          <>
+            <View style={styles.error}>
+              <AppText
+                style={{
+                  textAlign: "center",
+                  fontSize: 26,
+                  marginVertical: 50,
+                }}
+              >
+                Something went Wrong
+              </AppText>
+              <AppButton title="Retry" onPress={loadlistings} color="primary" />
+            </View>
+          </>
         )}
-      />
-    </Screen>
+        <FlatList
+          data={listings}
+          keyExtractor={(listing) => listing.id.toString()}
+          renderItem={({ item }) => (
+            // console.log(item),
+            <Card
+              title={item.title}
+              subTitle={`$${item.price}`}
+              imageUrl={item.images[0]?.url}
+              thumbnailUrl={item.images[0]?.thumbnailUrl}
+              onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
+            />
+          )}
+        />
+      </Screen>
+    </>
   );
 };
 
