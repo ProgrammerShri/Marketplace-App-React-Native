@@ -7,7 +7,7 @@ import routes from "../navigation/routes";
 import listingApi from "../api/listings";
 import AppText from "../components/AppText";
 import AppButton from "../components/AppButton";
-// import ActivityIndicator from "../components/ActivityIndicator";
+import ActivityIndicator from "../components/ActivityIndicator";
 import useApi from "../hooks/useApi";
 
 const ListingsScreen = ({ navigation }) => {

@@ -19,7 +19,7 @@ const ActivityIndicator = ({ visible = false }) => {
 
 const styles = StyleSheet.create({
   overlay: {
-    backgroundColor: colors.black,
+    backgroundColor: colors.white,
     width: "100%",
     height: "100%",
     position: "absolute",
